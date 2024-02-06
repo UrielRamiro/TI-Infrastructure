@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Requisição HTTP</title>
+</head>
+<body>
+    <h1>Resultado da Requisição HTTP</h1>
+    <div id="resultado"></div>
+
+    <script>
+        async function testehaha() {
+            const url = '/api/health-check';  // A rota '/api' é a que você configurou no proxy reverso
+        
+            try {
+                const response = await fetch(url);
+        
+                if (!response.ok) {
+                    throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+                }
+        
+                const data = await response.json();
+                document.getElementById('resultado').innerText = JSON.stringify(data);
+            } catch (error) {
+                console.error('Erro na requisição:', error.message, error.stack);
+                document.getElementById('resultado').innerText = 'Erro na requisição.';
+            }
+        }
+
+        // Chamar a função ao carregar a página
+        (async () => {
+            await testehaha();
+            // Outras ações que você deseja realizar após a conclusão de testehaha()
+        })();
+    </script>
+</body>
+</html>
