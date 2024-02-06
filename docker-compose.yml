@@ -1,0 +1,52 @@
+version: '3' 
+
+services:
+
+  postgres:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - servers
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ginfragrad06
+
+  frontend:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    ports:
+      - "7026:80"
+    networks:
+      - servers
+
+  backend:
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - servers
+
+  bind-ssh:
+    build:
+      context: ./dns
+      dockerfile: Dockerfile
+    ports:
+      - "5053:53/udp" 
+      - "5053:53/tcp" 
+    networks:
+      - servers
+
+volumes:
+  postgres_data:
+
+networks:
+  servers:
