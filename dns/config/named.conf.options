@@ -1,0 +1,15 @@
+
+acl LAN {
+192.168.0.0/24;
+};
+
+acl ALL {
+0.0.0.0/0;
+};
+
+options {
+        directory "/var/cache/bind"; // default directory
+        allow-query { ALL; };
+        forwarders { 1.1.1.1; }; // use CloudFlare 1.1.1.1 DNS as a forwarder
+        recursion yes;  // allow recursive queries
+};

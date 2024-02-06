@@ -1,0 +1,18 @@
+$TTL    604800
+; SOA record with MNAME and RNAME updated
+@       IN      SOA     brinfra.ginfragrad06. root.brinfra.ginfragrad06. (
+                              9         ; Serial Note: increment after each change
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+; Name server record 
+@       IN      NS      bindserver.brinfra.ginfragrad06.
+; A record for name server
+bindserver      IN      A       192.168.0.166
+; PTR record for name server
+166   IN      PTR     bindserver.brinfra.ginfragrad06.
+; PTR record for clients
+166   IN      PTR     client1.brinfra.ginfragrad06.
+166   IN      PTR     client2.brinfra.ginfragrad06.
+166   IN      PTR     www.brinfra.ginfragrad06.

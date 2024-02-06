@@ -1,0 +1,8 @@
+zone "brinfra.ginfragrad06" IN { // define the forward zone
+        type master;
+        file "/etc/bind/zones/brinfra.ginfragrad06";
+};
+zone "0.168.192.in-addr.arpa" IN { // define the reverse zone
+        type master;
+        file "/etc/bind/zones/brinfra.ginfragrad06.rev";
+};
